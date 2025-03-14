@@ -44,7 +44,12 @@ public class ReservationService {
     }
 
     public List<Reservation> getUserReservations(String userId) {
-        return reservationRepo.findByUserId(userId);
+
+        User user = userRepo.findById(userId).orElse(null);
+        if (user == null) {
+            return List.of(); // 유저가 없으면 빈 리스트 반환
+        }
+        return reservationRepo.findByUser(user);
     }
 
 

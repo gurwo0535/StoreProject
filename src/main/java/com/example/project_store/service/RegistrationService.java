@@ -1,20 +1,20 @@
 package com.example.project_store.service;
 
-import com.example.project_store.dto.StorerDto;
-import com.example.project_store.entity.Reservation;
-import com.example.project_store.entity.Storer;
-import com.example.project_store.entity.User;
-import com.example.project_store.repo.ReservationRepo;
-import com.example.project_store.repo.StorerRepo;
-import com.example.project_store.repo.UserRepo;
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
+        import com.example.project_store.dto.StorerDto;
+        import com.example.project_store.entity.Reservation;
+        import com.example.project_store.entity.Storer;
+        import com.example.project_store.entity.User;
+        import com.example.project_store.repo.ReservationRepo;
+        import com.example.project_store.repo.StorerRepo;
+        import com.example.project_store.repo.UserRepo;
+        import jakarta.servlet.http.HttpSession;
+        import lombok.RequiredArgsConstructor;
+        import org.springframework.stereotype.Service;
+        import org.springframework.transaction.annotation.Transactional;
+        import org.springframework.ui.Model;
 
-import java.util.List;
-import java.util.Optional;
+        import java.util.List;
+        import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -97,4 +97,10 @@ public class RegistrationService {
         }
     }
 
+    public String getStoreNameById(Long storeId) {
+        Optional<Storer> storerOptional = storerRepo.findById(Math.toIntExact(storeId));
+
+        // Storer가 존재하면 title을 반환, 없으면 null을 반환
+        return storerOptional.map(Storer::getTitle).orElse(null);
+    }
 }

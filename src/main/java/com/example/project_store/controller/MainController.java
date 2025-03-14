@@ -47,8 +47,9 @@ public class MainController {
         String result = mainService.login(id, password, session, model);
 
         if (result.equals("/main")) {
-//            session.setAttribute("userId", id); //  세션에 userId 저장
+            session.setAttribute("userId", id); //  세션에 userId 저장
             session.setAttribute("loginUser", id);
+
             return "redirect:/main";
 
         }
@@ -58,11 +59,12 @@ public class MainController {
 
     @GetMapping("/myPage")
     public String showMyPage(HttpSession session, Model model) {
-        String userId = (String) session.getAttribute("userId");// 세션에서 userId 가져오기
+        // 세션에서 userId를 가져오기
+        String userId = (String) session.getAttribute("userId");
 
         if (userId != null) {
             List<Reservation> reservations = reservationService.getUserReservations(userId);
-            model.addAttribute("reservations", reservations);// 모델에 예약 리스트 추가
+            model.addAttribute("reservations", reservations); // 모델에 예약 리스트 추가
         }
         return "/myPage";
     }

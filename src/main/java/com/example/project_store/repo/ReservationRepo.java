@@ -1,6 +1,7 @@
 package com.example.project_store.repo;
 
 import com.example.project_store.entity.Reservation;
+import com.example.project_store.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface ReservationRepo extends JpaRepository<Reservation, Integer> {
 
     List<Reservation> findByUserId(String userId);
 
-    Optional<Reservation> findById(Long id);
-
+//    Optional<Reservation> findById(Long id);
+    List<Reservation> findByUser(User user);
     void deleteById(Long id);
 }
