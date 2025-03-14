@@ -24,7 +24,6 @@ public class MainController {
     private final MainService mainService;
     private final ReservationService reservationService;
 
-
     @GetMapping("/main")
     public String mainPage(HttpSession session, Model model) {
         Object loginUser = session.getAttribute("loginUser"); // 로그인한 사용자 정보 가져오기
